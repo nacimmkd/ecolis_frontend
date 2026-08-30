@@ -4,12 +4,12 @@ import type { CreateReviewRequest, PageReviewDto, ReviewDto } from "@/shared/typ
 const reviewsService = {
 
     async getUserReviews(revieweeId: string, page = 0, size = 20): Promise<PageReviewDto> {
-        const res = await api.get<PageReviewDto>("/reviews", { params: { revieweeId, page, size } });
+        const res = await api.get<PageReviewDto>("/api/v1/reviews", { params: { revieweeId, page, size } });
         return res.data;
     },
 
     async createReview(data: CreateReviewRequest): Promise<ReviewDto> {
-        const res = await api.post<ReviewDto>("/reviews", data);
+        const res = await api.post<ReviewDto>("/api/v1/reviews", data);
         return res.data;
     },
 

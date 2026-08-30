@@ -4,44 +4,44 @@ import type {AddressRequest, PageTripBookingDto, PageTripSummary, TripCreateRequ
 const tripService = {
 
     async getTrip(id: string): Promise<TripDetails> {
-        const res = await api.get<TripDetails>(`/trips/${id}`);
+        const res = await api.get<TripDetails>(`/api/v1/trips/${id}`);
         return res.data;
     },
 
     async getMyTrips(page = 0, size = 20): Promise<PageTripSummary> {
-        const res = await api.get<PageTripSummary>("/trips/me", { params: { page, size } });
+        const res = await api.get<PageTripSummary>("/api/v1/trips/me", { params: { page, size } });
         return res.data;
     },
 
     async createTrip(data: TripCreateRequest): Promise<TripDetails> {
-        const res = await api.post<TripDetails>("/trips", data);
+        const res = await api.post<TripDetails>("/api/v1/trips", data);
         return res.data;
     },
 
     async updateTrip(id: string, data: TripUpdateRequest): Promise<TripDetails> {
-        const res = await api.put<TripDetails>(`/trips/${id}`, data);
+        const res = await api.put<TripDetails>(`/api/v1/trips/${id}`, data);
         return res.data;
     },
 
     async deleteTrip(id: string): Promise<void> {
-        await api.delete(`/trips/${id}`);
+        await api.delete(`/api/v1/trips/${id}`);
     },
 
     async addStop(id: string, data: AddressRequest): Promise<void> {
-        await api.post(`/trips/${id}/stops`, data);
+        await api.post(`/api/v1/trips/${id}/stops`, data);
     },
 
     async deleteStop(tripId: string, stopId: string): Promise<void> {
-        await api.delete(`/trips/${tripId}/stops/${stopId}`);
+        await api.delete(`/api/v1/trips/${tripId}/stops/${stopId}`);
     },
 
     async getTripBookings(tripId: string, page = 0, size = 20): Promise<PageTripBookingDto> {
-        const res = await api.get<PageTripBookingDto>(`/trips/${tripId}/bookings`, { params: { page, size } });
+        const res = await api.get<PageTripBookingDto>(`/api/v1/trips/${tripId}/bookings`, { params: { page, size } });
         return res.data;
     },
 
     async getTripRequests(tripId: string, page = 0, size = 20): Promise<PageTripBookingDto> {
-        const res = await api.get<PageTripBookingDto>(`/trips/${tripId}/requests`, { params: { page, size } });
+        const res = await api.get<PageTripBookingDto>(`/api/v1/trips/${tripId}/requests`, { params: { page, size } });
         return res.data;
     },
 

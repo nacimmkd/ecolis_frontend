@@ -11,9 +11,28 @@ export const api = axios.create({
     },
 });
 
+let refreshPromise: Promise<unknown> | null = null;
+
 api.interceptors.response.use(
     (response) => response,
-    (err) => Promise.reject(AppError.from(err)),
+    async (err) => {
+        const originalRequest = err.config;
+        const isAccessTokenExpired = err.response?.data?.code === "ACCESS_TOKEN_EXPIRED";
+
+        if (isAccessTokenExpired && originalRequest && !originalRequest._retry) {
+            originalRequest._retry = true;
+            try {
+                refreshPromise ??= api.post("/api/v1/auth/refresh").finally(() => { refreshPromise = null; });
+                await refreshPromise;
+                return api(originalRequest);
+            } catch {
+                const { default: authStore } = await import("@/features/auth/store/auth.store");
+                authStore.getState().setUser(null);
+            }
+        }
+
+        return Promise.reject(AppError.from(err));
+    },
 );
 
 export default api;

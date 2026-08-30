@@ -4,8 +4,6 @@ import authService from "@/features/auth/services/auth.service";
 import type { AppError } from "@/shared/types/AppError";
 import authStore from "@/features/auth/store/auth.store.ts";
 
-const GOOGLE_AUTH_URL = "http://localhost:8080/oauth2/authorization/google";
-
 export default function useAuth() {
 
     const setUser = authStore((s) => s.setUser);
@@ -30,7 +28,7 @@ export default function useAuth() {
     }
 
     function loginWithGoogle(): void {
-        window.location.href = GOOGLE_AUTH_URL;
+        window.location.href = authService.getGoogleAuthUrl();
     }
 
     return {
