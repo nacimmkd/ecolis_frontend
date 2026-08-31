@@ -5,6 +5,9 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci
 
+ARG API_URL
+ENV VITE_API_URL=$API_URL
+
 COPY . .
 RUN npm run build
 
