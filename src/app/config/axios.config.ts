@@ -11,8 +11,6 @@ export const api = axios.create({
     },
 });
 
-let refreshPromise: Promise<unknown> | null = null;
-
 api.interceptors.response.use(
     (response) => response,
     (err) => Promise.reject(AppError.from(err))
