@@ -66,7 +66,7 @@ export default function Input(props: InputProps) {
             )}
 
             <div className={styles.inputWrapper}>
-                {props.multiline ? (
+                {props.multiline === true ? (
                     <textarea
                         className={`${styles.input} ${styles.textarea} ${error ? styles.inputError : ""}`}
                         id={id}
@@ -96,7 +96,7 @@ export default function Input(props: InputProps) {
                         onKeyDown={props.onKeyDown}
                     />
                 )}
-                {!props.multiline && props.suffix && <span className={styles.suffix}>{props.suffix}</span>}
+                {props.multiline !== true && props.suffix && <span className={styles.suffix}>{props.suffix}</span>}
             </div>
 
             {error && <span className={styles.error}>{error}</span>}
