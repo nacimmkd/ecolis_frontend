@@ -1378,7 +1378,7 @@ export interface components {
             /** Format: uuid */
             notificationId?: string;
             /** @enum {string} */
-            type?: "VERIFY_USER" | "RESET_PASSWORD" | "USER_CREATED" | "MESSAGE_RECEIVED" | "REQUEST_RECEIVED" | "BOOKING_CREATED" | "BOOKING_CANCELED" | "BOOKING_COMPLETED" | "BOOKING_PAID" | "TRIP_CANCELLED" | "PARCEL_DELIVERED";
+            type?: "VERIFY_USER" | "RESET_PASSWORD" | "USER_CREATED" | "MESSAGE_RECEIVED" | "REQUEST_RECEIVED" | "BOOKING_CREATED" | "BOOKING_CANCELED" | "BOOKING_COMPLETED" | "BOOKING_PAID" | "TRIP_CANCELLED" | "PARCEL_DELIVERED" | "REVIEW_CREATED";
             /** Format: uuid */
             referenceId?: string;
             isRead?: boolean;

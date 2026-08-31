@@ -4,19 +4,16 @@ import {
     CircleCheckBig,
     CreditCard,
     Inbox,
-    KeyRound,
-    MailCheck,
     MessageCircle,
     PackageCheck,
     PartyPopper,
+    Star,
 } from "lucide-react";
 import type { NotificationDto } from "@/shared/types";
 
 type NotificationType = NonNullable<NotificationDto["type"]>;
 
-const NOTIFICATION_ICON: Record<NotificationType, React.ReactNode> = {
-    VERIFY_USER: <MailCheck size={18} />,
-    RESET_PASSWORD: <KeyRound size={18} />,
+const NOTIFICATION_ICON: Partial<Record<NotificationType, React.ReactNode>> = {
     USER_CREATED: <PartyPopper size={18} />,
     MESSAGE_RECEIVED: <MessageCircle size={18} />,
     REQUEST_RECEIVED: <Inbox size={18} />,
@@ -26,9 +23,10 @@ const NOTIFICATION_ICON: Record<NotificationType, React.ReactNode> = {
     BOOKING_PAID: <CreditCard size={18} />,
     TRIP_CANCELLED: <Ban size={18} />,
     PARCEL_DELIVERED: <PackageCheck size={18} />,
+    REVIEW_CREATED: <Star size={18} />,
 };
 
 export default function notificationIcon(notification: NotificationDto): React.ReactNode {
     if (!notification.type) return <Inbox size={18} />;
-    return NOTIFICATION_ICON[notification.type];
+    return NOTIFICATION_ICON[notification.type] ?? <Inbox size={18} />;
 }
