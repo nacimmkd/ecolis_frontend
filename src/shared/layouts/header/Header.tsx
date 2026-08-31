@@ -38,9 +38,9 @@ export default function Header() {
                 <div className={styles.right_container}>
                     <div className={styles.login_container}>
                         <Link to={paths.login} className={styles.login_button}>
-                            Log In
+                            Connexion
                         </Link>
-                        <Link to={paths.signup} className={styles.signin_button}>Sign Up</Link>
+                        <Link to={paths.signup} className={styles.signin_button}>Inscription</Link>
                     </div>
                 </div> 
             )}
@@ -62,9 +62,9 @@ export default function Header() {
                             <MenuItem label="Mes Colis" to={paths.parcels_list} icon={<Package size={20} />} />
                             <MenuItem label="Mes Trajets" to={paths.trips} icon={<Car size={20} />} />
                             <Divider/>
-                            <MenuItem label="Profile" to={paths.profile} icon={<User size={20} />} />
+                            <MenuItem label="Profil" to={paths.profile} icon={<User size={20} />} />
                             <Divider/>
-                            <Button label={"Log Out"} variant="danger" onClick={logout} loading={isLoading} icon={<LogOut size={20} />}/>
+                            <Button label={"Déconnexion"} variant="danger" onClick={logout} loading={isLoading} icon={<LogOut size={20} />}/>
                         </Menu>
                     </div>
                 </div>

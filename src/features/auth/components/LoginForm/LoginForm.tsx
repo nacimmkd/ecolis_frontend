@@ -46,8 +46,8 @@ export default function LoginForm({
             )}
 
             <Container gap={0} className={styles.heading}>
-                <Text tag="h1" weight="bold" size={2} className={styles.title}>Welcome back</Text>
-                <Text tag="p" className={styles.subtitle}>Sign in to your Ecolis account</Text>
+                <Text tag="h1" weight="bold" size={2} className={styles.title}>Bon retour</Text>
+                <Text tag="p" className={styles.subtitle}>Connectez-vous à votre compte Ecolis</Text>
             </Container>
 
             <form className={styles.form} onSubmit={onSubmit}>
@@ -55,7 +55,7 @@ export default function LoginForm({
                     id="email"
                     name="email"
                     type="email"
-                    label="Email"
+                    label="E-mail"
                     value={form.email}
                     placeholder="vous@exemple.com"
                     autoComplete="email"
@@ -68,7 +68,7 @@ export default function LoginForm({
                     id="password"
                     name="password"
                     type={showPassword ? "text" : "password"}
-                    label="Password"
+                    label="Mot de passe"
                     value={form.password}
                     placeholder="••••••••"
                     autoComplete="current-password"
@@ -91,12 +91,12 @@ export default function LoginForm({
                         )
                     }
                     hint={
-                        <Link className={styles.forgot} to={paths.reset_password}>Forgot password?</Link>
+                        <Link className={styles.forgot} to={paths.reset_password}>Mot de passe oublié ?</Link>
                     }
                 />
 
                 <Button
-                    label="Sign in"
+                    label="Se connecter"
                     type="submit"
                     variant="main"
                     fullWidth
@@ -106,7 +106,7 @@ export default function LoginForm({
                 />
             </form>
 
-            <Divider text="OR CONTINUE WITH" />
+            <Divider text="OU CONTINUER AVEC" />
 
             <Button
                 label="Google"
@@ -118,7 +118,7 @@ export default function LoginForm({
             />
 
             <p className={styles.footer}>
-                New to Ecolis? <Link className={styles.link} to={paths.signup}>Create an account</Link>
+                Nouveau sur Ecolis ? <Link className={styles.link} to={paths.signup}>Créer un compte</Link>
             </p>
         </Container>
     );

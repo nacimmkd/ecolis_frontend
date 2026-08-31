@@ -10,7 +10,7 @@ export type StagedMedia = {
 const mediaService = {
 
     async getPresignedUrl(content: string): Promise<PresignedUrl> {
-        const res = await api.post<PresignedUrl>("/images/presign", null, {
+        const res = await api.post<PresignedUrl>("/api/v1/images/presign", null, {
             params: { content },
         });
         return res.data;

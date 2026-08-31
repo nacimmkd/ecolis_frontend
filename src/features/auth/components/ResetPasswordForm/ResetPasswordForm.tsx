@@ -68,7 +68,7 @@ export default function ResetPasswordForm({
                         id="email"
                         name="email"
                         type="email"
-                        label="Email"
+                        label="E-mail"
                         value={email}
                         placeholder="vous@exemple.com"
                         autoComplete="email"

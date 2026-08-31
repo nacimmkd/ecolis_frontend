@@ -160,11 +160,11 @@ export default function ParcelForm({
                                             onChange={(value) => updateField("size", value as ParcelCreateRequest["size"])}
                                             error={error?.fields.size}
                                         >
-                                            <SelectItem value="S">Small - 20x15x10cm</SelectItem>
-                                            <SelectItem value="M">Medium - 35x25x15cm</SelectItem>
-                                            <SelectItem value="L">Large - 50x35x25cm</SelectItem>
-                                            <SelectItem value="XL">Large XL - 65x45x35cm</SelectItem>
-                                            <SelectItem value="XXL">Large XXL - 80x60x45cm</SelectItem>
+                                            <SelectItem value="S">Petit - 20x15x10cm</SelectItem>
+                                            <SelectItem value="M">Moyen - 35x25x15cm</SelectItem>
+                                            <SelectItem value="L">Grand - 50x35x25cm</SelectItem>
+                                            <SelectItem value="XL">Très grand - 65x45x35cm</SelectItem>
+                                            <SelectItem value="XXL">Très très grand - 80x60x45cm</SelectItem>
                                         </Select>
                                     </div>
 

@@ -86,39 +86,6 @@
     width: 100%;
 }
 
-/* --- Date input --- */
-
-.input[type="date"] {
-    position: relative;
-    cursor: pointer;
-}
-
-.input[type="date"]::-webkit-calendar-picker-indicator {
-    cursor: pointer;
-    padding: 4px;
-    margin-left: 8px;
-    border-radius: 6px;
-    opacity: 0.6;
-    transition: opacity 160ms ease, background-color 160ms ease;
-}
-
-.input[type="date"]::-webkit-calendar-picker-indicator:hover {
-    opacity: 1;
-    background-color: var(--color-surface);
-}
-
-.input[type="date"]::-webkit-datetime-edit {
-    color: var(--color-espresso);
-}
-
-.input[type="date"]::-webkit-datetime-edit-fields-wrapper {
-    padding: 0;
-}
-
-.input[type="date"]:not(:valid)::-webkit-datetime-edit {
-    color: color-mix(in srgb, var(--color-espresso) 36%, transparent);
-}
-
 .suffix {
     position: absolute;
     right: 4px;

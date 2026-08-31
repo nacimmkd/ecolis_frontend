@@ -39,8 +39,8 @@ export default function SignupForm({
             <Error error={error} />
 
             <Container gap={0} className={styles.heading}>
-                <Text tag="h1" weight="bold" size={2}>Create your account</Text>
-                <Text tag="p" muted>Join Ecolis and start sending parcels</Text>
+                <Text tag="h1" weight="bold" size={2}>Créez votre compte</Text>
+                <Text tag="p" muted>Rejoignez Ecolis et commencez à envoyer des colis</Text>
             </Container>
 
             <form className={styles.form} onSubmit={onSubmit}>
@@ -50,7 +50,7 @@ export default function SignupForm({
                         id="firstName"
                         name="firstName"
                         type="text"
-                        label="First name"
+                        label="Prénom"
                         placeholder="Nacim"
                         autoComplete="given-name"
                         required
@@ -62,7 +62,7 @@ export default function SignupForm({
                         id="lastName"
                         name="lastName"
                         type="text"
-                        label="Last name"
+                        label="Nom"
                         placeholder="Benali"
                         autoComplete="family-name"
                         required
@@ -76,7 +76,7 @@ export default function SignupForm({
                     id="email"
                     name="email"
                     type="email"
-                    label="Email"
+                    label="E-mail"
                     placeholder="vous@exemple.com"
                     autoComplete="email"
                     required
@@ -89,14 +89,14 @@ export default function SignupForm({
                     id="password"
                     name="password"
                     type={showPassword ? "text" : "password"}
-                    label="Password"
+                    label="Mot de passe"
                     placeholder="••••••••"
                     autoComplete="new-password"
                     required
                     onChange={onChange}
                     value={form.password}
                     error={error?.fields.password}
-                    hint={<Text tag="small" muted>At least 8 characters</Text>}
+                    hint={<Text tag="small" muted>Au moins 8 caractères</Text>}
                     suffix={
                         showPassword ? (
                             <EyeOff
@@ -117,15 +117,15 @@ export default function SignupForm({
                 <label className={styles.terms}>
                     <input className={styles.checkbox} type="checkbox" required />
                     <span>
-                        I agree to the{" "}
-                        <Link className={styles.link} to={""}>Terms</Link>
-                        {" "}and{" "}
-                        <Link className={styles.link} to={""}>Privacy Policy</Link>
+                        J'accepte les{" "}
+                        <Link className={styles.link} to={""}>Conditions d'utilisation</Link>
+                        {" "}et la{" "}
+                        <Link className={styles.link} to={""}>Politique de confidentialité</Link>
                     </span>
                 </label>
 
                 <Button
-                    label="Create account"
+                    label="Créer un compte"
                     type="submit"
                     variant="main"
                     fullWidth
@@ -136,7 +136,7 @@ export default function SignupForm({
 
             </form>
 
-            <Divider text="OR CONTINUE WITH" />
+            <Divider text="OU CONTINUER AVEC" />
 
             <Button
                 label="Google"
@@ -148,7 +148,7 @@ export default function SignupForm({
             />
 
             <p className={styles.footer}>
-                Already have an account? <Link className={styles.link} to={paths.login}>Sign in</Link>
+                Vous avez déjà un compte ? <Link className={styles.link} to={paths.login}>Se connecter</Link>
             </p>
 
         </Container>
