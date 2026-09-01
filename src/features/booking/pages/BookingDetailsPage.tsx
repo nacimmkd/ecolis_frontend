@@ -9,6 +9,7 @@ import Spinner from "@/shared/components/spinner/Spinner.tsx";
 import Price from "@/shared/components/price/Price.tsx";
 import Button from "@/shared/components/button/Button.tsx";
 import Confirmation from "@/shared/components/confirmation/Confirmation.tsx";
+import Error from "@/shared/components/error/Error.tsx";
 import Itinerary from "@/shared/components/itinerary/Itinerary.tsx";
 import UserBrief from "@/features/profile/components/UserBrief/UserBrief.tsx";
 import authStore from "@/features/auth/store/auth.store.ts";
@@ -34,7 +35,7 @@ function paymentStatusText(state: BookingDto["state"]): string {
 export default function BookingDetailsPage() {
     const { id } = useParams<{ id: string }>();
     const { booking, isLoading, isError } = useBookingQuery(id);
-    const { cancelBooking, isLoading: isCancelling } = useCancelBooking();
+    const { cancelBooking, isLoading: isCancelling, error: cancelError } = useCancelBooking();
     const [isCancelOpen, setIsCancelOpen] = useState(false);
     const currentUserId = authStore((s) => s.user?.userId);
 
@@ -55,8 +56,7 @@ export default function BookingDetailsPage() {
     }
 
     const canPay = booking.state === "PENDING";
-    const closed = booking.state === "REJECTED" || booking.state === "CANCELLED" || booking.state === "COMPLETED";
-    const canCancel = !closed;
+    const canCancel = booking.state === "PENDING" || booking.state === "WAITING_FOR_ANSWER" || booking.state === "ACCEPTED";
     const otherParty = currentUserId === booking.sender?.userId ? booking.carrier : booking.sender;
 
     async function handleCancel() {
@@ -130,7 +130,12 @@ export default function BookingDetailsPage() {
                 <Confirmation
                     type="delete"
                     title="Annuler cette réservation ?"
-                    description="Cette action est irréversible."
+                    description={
+                        <>
+                            Cette action est irréversible.
+                            <Error error={cancelError} />
+                        </>
+                    }
                     confirmLabel="Annuler la réservation"
                     cancelLabel="Retour"
                     onConfirm={handleCancel}

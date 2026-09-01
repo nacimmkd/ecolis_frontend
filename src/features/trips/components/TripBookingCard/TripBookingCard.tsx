@@ -1,5 +1,6 @@
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Check, CheckCheck, MapPin, PackageCheck, WeightTilde, X } from "lucide-react";
+import { Check, CheckCheck, MapPin, PackageCheck, Star, WeightTilde, X } from "lucide-react";
 import styles from "./TripBookingCard.module.css";
 import Text from "@/shared/components/text/Text.tsx";
 import Container from "@/shared/components/container/Container.tsx";
@@ -9,6 +10,7 @@ import Button from "@/shared/components/button/Button.tsx";
 import Tag from "@/shared/components/tag/Tag.tsx";
 import Itinerary from "@/shared/components/itinerary/Itinerary.tsx";
 import UserBrief from "@/features/profile/components/UserBrief/UserBrief.tsx";
+import CreateReviewPopup from "@/features/reviews/components/CreateReviewPopup/CreateReviewPopup.tsx";
 import bookingStateLabel from "@/shared/utils/bookingStateLabel.ts";
 import googleMapsUrl from "@/shared/utils/googleMapsUrl.ts";
 import { bookingDetailsPath, userProfilePath } from "@/app/routes/paths.ts";
@@ -38,8 +40,10 @@ export default function TripBookingCard({
     isCompletingDelivery = false,
 }: TripBookingCardProps) {
     const navigate = useNavigate();
+    const [showReview, setShowReview] = useState(false);
     const canRespond = Boolean(onAccept || onReject);
     const canManage = Boolean(onConfirmPickup || onCompleteDelivery);
+    const canReview = booking.state === "COMPLETED";
     const isPickedUp = booking.parcel?.state != null && booking.parcel.state !== "BOOKED";
     const mapsUrl = googleMapsUrl(isPickedUp ? booking.parcel?.dropoff : booking.parcel?.pickup);
 
@@ -133,6 +137,27 @@ export default function TripBookingCard({
                                 icon={<CheckCheck size={16} />}
                                 onClick={onCompleteDelivery}
                                 loading={isCompletingDelivery}
+                            />
+                        )}
+                    </div>
+                )}
+
+                {canReview && (
+                    <div className={styles.actions} onClick={(e) => e.stopPropagation()}>
+                        <Button
+                            label="Laisser un avis"
+                            variant="secondary"
+                            size="sm"
+                            icon={<Star size={16} />}
+                            onClick={() => setShowReview(true)}
+                        />
+
+                        {showReview && (
+                            <CreateReviewPopup
+                                bookingId={booking.bookingId ?? ""}
+                                revieweeLabel="cet expéditeur"
+                                onClose={() => setShowReview(false)}
+                                onSuccess={() => setShowReview(false)}
                             />
                         )}
                     </div>

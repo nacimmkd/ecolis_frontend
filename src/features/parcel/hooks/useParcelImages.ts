@@ -5,6 +5,19 @@ import type { AppError } from "@/shared/types/AppError";
 
 const MAX_IMAGES = 5;
 
+// crypto.randomUUID() is only exposed in secure contexts (HTTPS/localhost);
+// this stays valid over plain HTTP too since it only tracks staged uploads locally.
+function generateLocalId(): string {
+    if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") {
+        return crypto.randomUUID();
+    }
+    return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (c) => {
+        const r = (Math.random() * 16) | 0;
+        const v = c === "x" ? r : (r & 0x3) | 0x8;
+        return v.toString(16);
+    });
+}
+
 export type ParcelImageUploadItem = {
     localId: string;
     previewUrl: string;
@@ -39,7 +52,7 @@ export default function useParcelImages(initialImages?: ParcelImageDto[]) {
         if (accepted.length === 0) return;
 
         const staged: ParcelImageUploadItem[] = accepted.map((file) => ({
-            localId: crypto.randomUUID(),
+            localId: generateLocalId(),
             previewUrl: URL.createObjectURL(file),
             isUploading: true,
         }));

@@ -17,6 +17,7 @@ export default function useRejectBooking(tripId?: string) {
             void queryClient.invalidateQueries({ queryKey: ["trip", tripId, "bookings"] });
             void queryClient.invalidateQueries({ queryKey: ["trip", tripId] });
             void queryClient.invalidateQueries({ queryKey: ["booking", id] });
+            void queryClient.invalidateQueries({ queryKey: ["parcel"] });
         },
     });
 

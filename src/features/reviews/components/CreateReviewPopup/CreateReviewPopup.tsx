@@ -11,11 +11,12 @@ import useCreateReview from "@/features/reviews/hooks/useCreateReview.ts";
 
 type CreateReviewPopupProps = {
     bookingId: string;
+    revieweeLabel?: string;
     onClose: () => void;
     onSuccess: () => void;
 };
 
-export default function CreateReviewPopup({ bookingId, onClose, onSuccess }: CreateReviewPopupProps) {
+export default function CreateReviewPopup({ bookingId, revieweeLabel = "ce livreur", onClose, onSuccess }: CreateReviewPopupProps) {
     const { createReview, isLoading, error } = useCreateReview();
     const [rating, setRating] = useState(0);
     const [hoverRating, setHoverRating] = useState(0);
@@ -31,7 +32,7 @@ export default function CreateReviewPopup({ bookingId, onClose, onSuccess }: Cre
         <Popup onClose={onClose}>
             <Container gap={12}>
                 <Text tag="h3" weight="bold">Laisser un avis</Text>
-                <Text tag="p" muted>Partagez votre expérience avec ce livreur.</Text>
+                <Text tag="p" muted>Partagez votre expérience avec {revieweeLabel}.</Text>
 
                 <Container direction="row" align="center" justify="center" gap={6} className={styles.stars}>
                     {Array.from({ length: 5 }, (_, i) => {

@@ -15,6 +15,7 @@ export default function useConfirmPickup(tripId?: string) {
         onSuccess: (_data, { id }) => {
             void queryClient.invalidateQueries({ queryKey: ["trip", tripId, "bookings"] });
             void queryClient.invalidateQueries({ queryKey: ["booking", id] });
+            void queryClient.invalidateQueries({ queryKey: ["parcel"] });
         },
     });
 
