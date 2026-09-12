@@ -28,7 +28,6 @@ export default function VerifyEmailPage() {
 
         verifyEmail({ token }).then((success) => {
             if (!success) return;
-
             navigate(paths.login, {
                 replace: true,
                 state: { notice: "Email vérifié ! Vous pouvez vous connecter." },
