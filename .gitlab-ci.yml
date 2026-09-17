@@ -12,7 +12,7 @@ build:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
   script:
     - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY"
-    - docker build --build-arg API_URL="$API_URL" --build-arg STRIPE_PUBLISHABLE_KEY="$STRIPE_PUBLISHABLE_KEY" -t $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA .
+    - docker build --build-arg API_URL="" --build-arg STRIPE_PUBLISHABLE_KEY="$STRIPE_PUBLISHABLE_KEY" -t $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA .
     - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
 
 deploy:
